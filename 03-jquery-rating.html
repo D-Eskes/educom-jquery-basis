@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="css/03-style.css">
+        <title> Issue 3 </title>
+        <script src="js/jquery.js"></script>
+        <script>
+
+
+            function colorStars(rating) {
+
+                $(".star").removeClass("red")
+                $(".star").each((index, elem) => {
+                    const elemValue = $(elem).attr("data-value")
+
+                    if (elemValue <= rating) {
+                        $(elem).addClass("red")
+                    }
+                }) 
+            }
+
+            function sendRating(rating) {
+                
+                $.ajax({
+                    url: "https://api.dev-master.ninja/js/rating",
+                    method: "POST",
+                    data: {rating: rating},
+                    success: function(result) { 
+                        console.log(result)
+                    }
+                })
+            }
+
+
+            $(document).ready( function() {
+                
+                $(".star").click( function() {
+
+                    const rating = $(this).attr("data-value")
+
+                    colorStars(rating)
+                    console.log(`Rating: ${rating}`)
+                    sendRating(rating)
+                    
+                    
+                })       
+            });    
+        </script>
+    </head>
+    <body>
+        <span class="star" data-value="1">*</span>
+        <span class="star" data-value="2">*</span>
+        <span class="star" data-value="3">*</span>
+        <span class="star" data-value="4">*</span>
+        <span class="star" data-value="5">*</span>
+    </body>
+</html>
