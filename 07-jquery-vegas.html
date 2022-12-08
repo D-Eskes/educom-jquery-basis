@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="css/vegas-style.css"/>
+        <link rel="stylesheet" href="vegas/vegas.css" />  
+        <script src="js/jquery.js"></script>
+        <script src="vegas/vegas.js"></script>
+        
+        <!-- <script type="module"> 
+            import jsonVegas from "./data/vegas.json" assert {type: "json"}
+
+            const mySlides = jsonVegas.slides
+
+            $(document).ready(function() {
+                
+                $("#background-image").vegas({
+                    overlay: 'vegas/overlays/02.png', 
+                    slides: mySlides,
+                    walk: function(index, slideSettings) {
+                        $(".text-block h1").html(mySlides[index].title)
+                        $(".text-block h4").html(mySlides[index].subtitle)
+
+                        console.log(`Slide index ${index}`)
+
+                    } 
+                })
+            })
+        </script> -->
+        <script> 
+
+            function setSlides(slides) {
+                $("#background-image").vegas({
+                    overlay: 'vegas/overlays/02.png', 
+                    slides: slides,
+                    walk: function(index, slideSettings) {
+                        $(".text-block h1").html(slides[index].title)
+                        $(".text-block h4").html(slides[index].subtitle)
+
+                        console.log(`Slide index ${index}`)
+
+                    } 
+                })
+            }
+
+            $(document).ready(function() {
+
+                $.getJSON("./data/vegas.json", function(data){
+                    setSlides(data.slides)
+                })
+  
+            })
+        </script>
+        <style>
+            #background-image {
+                width: 100vw;
+                height: 100vh;
+            }
+        </style>
+        <title> Issue 7 </title>
+    </head>
+    <body>
+        
+        <div id="background-image">
+            <div class="container">
+                <div class="text-block">
+                    <h1> Title </h1>
+                    <h4> Subtitle </h4>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
