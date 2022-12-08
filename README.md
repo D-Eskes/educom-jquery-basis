@@ -1,0 +1,2 @@
+# JQuery Basis Module
+JQuery is a library that originated in a time when not all browser were "in sync" with the official JavaScript specification. JQuery made it possible to write JavaScript code that was executed in the same way in each browser. As time progressed, a lot of nice functionality was added to JQuery and even more plugins were created in the open source community.
