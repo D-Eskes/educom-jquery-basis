@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="css/03-style.css">
+        <title> Issue 3 </title>
+        <script src="js/jquery.js"></script>
+        <script>
+
+            $(document).ready(function() {
+
+                $("#save").click(function() {
+                
+                    const data = {
+                        id: $("#id").val(),
+                        name: $("#name").val().toUpperCase(),
+                        city: $("#city").val()
+                    }
+
+                    $.ajax({
+                        url: "https://api.dev-master.ninja/js/form",
+                        method: "POST",
+                        data: data,
+                        success: function(data) {
+                            $("#name").val(data.form_data.name)
+                            $("#date").val(data.date)
+                            console.log(data)
+                        }
+                    })
+
+                    
+                })   
+            });    
+        </script>
+    </head>
+    <body>
+        <form id="form">
+            <input type="text" name="id" id="id" value="1234">
+            <br>
+            Name: <input type="text" id="name">
+            <br>
+            City: <input type="text" id="city">
+            <br>
+            Date: <input type="text" disabled id="date">
+            <br>
+        </form>
+        <button id="save">Save</button>
+    </body>
+</html>
